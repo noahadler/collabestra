@@ -1,3 +1,12 @@
+# COLLABESTRA - online collaborative score and synthesizer editing
+# initial fork based on:
+#  Etherpad lite
+#
+# with integrations based on:
+#  abc.js
+#  ChucK
+#  icecast
+
 # Our goal is to make collaborative editing the standard on the web
 
 # About

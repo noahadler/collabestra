@@ -1,8 +1,16 @@
 #!/bin/sh
-wget http://localhost:9001/p/collexistra-score-pad -o score.abc
-abc2mid score.abc -o score.mid
+while true
+do
 
-chuck midi-mando.ck
+	wget http://localhost:9001/p/collexistra-score-pad/export/txt -O score.abc
+	abc2midi score.abc -o score.mid
+	wget http://localhost:9001/p/collexistra-chuck-pad/export/txt -O pad.ck
 
-aplaymidi -p 14:0 score.mid
+	chuck --srate44100 pad.ck &
+
+	aplaymidi -p 14:0 score.mid
+
+	killall chuck
+
+done
 

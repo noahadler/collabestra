@@ -6,6 +6,14 @@
 #  abc.js
 #  ChucK
 #  icecast
+#  darkice
+
+# In the current setup, there are a few scripts that need to be running simultaneously:
+#   1) start jackd at 44.1kHz using qjackctl
+#   2) exec bin/run.sh to start up the node.js server
+#   3) exec static/examples/connect.sh (temporary!)
+#   4) descend into static/examples and start darkice with 'darkice -c darkice.cfg'
+#   5) connect to http://localhost:9001 (or whatever your machine's called) and have fun!
 
 # Our goal is to make collaborative editing the standard on the web
 

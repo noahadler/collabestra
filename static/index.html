@@ -33,9 +33,12 @@
 	</script>
 </head>
 <body>
-	<a href="http://collexistra.something/livestream.pls">listen in</a>
+	<a href="/static/listen.pls">listen in</a> (todo) - 
+	<a href="http://chuck.cs.princeton.edu/doc/">ChucK docs</a> -
+	<a href="http://abc.sourceforge.net/standard/abc2midi.txt">Guide to writing abc for abc2midi</a>
+	<hr />
 
-	Use this pad for writing a score in abc notation
+	<!-- Use this pad for writing a score in abc notation
 	<div id="score-outer" style="width:100%;overflow:auto;">
 		<div id="score-pad-wrapper" style="width:600px;float:left;">
 			<iframe class="etherframe" id="score-pad" src="/p/collexistra-score-pad?showControls=true&showChat=true&showLineNumbers=true&useMonospaceFont=true&noColors=false&hideQRCode=true"></iframe>
@@ -43,13 +46,22 @@
 		<div id="notation-wrapper" style="float:right;">
 			<div id="notation" />
 		</div>
-	</div>
+	</div> -->
 
 	<hr style="clear:both;"/>
 
 	Use this pad to connect the score to sound generators in ChucK
 	<div id="chuck-pad-wrapper">
 		<iframe class="etherframe" id="chuck-pad" src="/p/collexistra-chuck-pad?showControls=true&showChat=true&showLineNumbers=true&useMonospaceFont=true&noColors=false&hideQRCode=true"></iframe>
+	</div>
+
+	<div style="float: right;">
+		<pre>
+		function definition - fun void functionName(float f) { ... }
+		spork ~ functionName - start running function in a new 'shred' (like a thread)
+		SinOsc - sine oscillator - .freq [0,1], .gain [0,1]
+		
+		</pre>
 	</div>
 
 </body>

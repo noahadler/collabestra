@@ -2,9 +2,23 @@
 <head>
 	<title>collabestra - live collaborative composition</title>
 	<style>
+	body{
+		border:0;
+		padding:0;
+	}
 	.etherframe{
-		width:600px;
+		width:608px;
 		height:400px;
+	}
+	.docs{
+		width:650px;
+		height:400px;
+	}
+	iframe{
+		border:0;
+	}
+	#chuck-pad-wrapper{
+		float:left;
 	}
 	</style>
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js" language="javascript"></script>
@@ -13,11 +27,19 @@
 		var scoreText = '';
 		$(document).ready(function()
 		{
+			var resizeFrames = function(){
+				console.log('resizing');
+				var frames = $('iframe.etherframe,iframe.docs');
+				$('.etherframe').width($(window).width()-$('iframe.docs').width()-20);
+				var targetHeight = $(window).height() - $('.etherframe').position().top-15;
+				frames.height(targetHeight);
+			};
+			
+			$(window).resize(resizeFrames);
+			resizeFrames();
+
 			setInterval(
 				function(){
-					// TODO: we are pretty much stuck until we get the pad on the same domain
-					//$.get("http://beta.etherpad.org/p/collabestra-score-pad/export/txt",
-
 					var newScoreText = $('score-pad').contents();
 					if (newScoreText != scoreText)
 					{
@@ -38,30 +60,15 @@
 	<a href="http://abc.sourceforge.net/standard/abc2midi.txt">Guide to writing abc for abc2midi</a>
 	<hr />
 
-	<!-- Use this pad for writing a score in abc notation
-	<div id="score-outer" style="width:100%;overflow:auto;">
-		<div id="score-pad-wrapper" style="width:600px;float:left;">
-			<iframe class="etherframe" id="score-pad" src="/p/collexistra-score-pad?showControls=true&showChat=true&showLineNumbers=true&useMonospaceFont=true&noColors=false&hideQRCode=true"></iframe>
-		</div>
-		<div id="notation-wrapper" style="float:right;">
-			<div id="notation" />
-		</div>
-	</div> -->
-
 	<hr style="clear:both;"/>
 
-	Use this pad to connect the score to sound generators in ChucK
 	<div id="chuck-pad-wrapper">
 		<iframe class="etherframe" id="chuck-pad" src="/p/collexistra-chuck-pad?showControls=true&showChat=true&showLineNumbers=true&useMonospaceFont=true&noColors=false&hideQRCode=true"></iframe>
 	</div>
 
 	<div style="float: right;">
-		<pre>
-		function definition - fun void functionName(float f) { ... }
-		spork ~ functionName - start running function in a new 'shred' (like a thread)
-		SinOsc - sine oscillator - .freq [0,1], .gain [0,1]
-		
-		</pre>
+		<iframe class="docs" id="docs-frame" src="http://chuck.cs.princeton.edu/doc/program/ugen.html">
+		</iframe>
 	</div>
 
 </body>
